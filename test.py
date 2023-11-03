@@ -182,7 +182,7 @@ def styleTransfer():
     import time
     start = time.time()
 
-    epochs = 10
+    epochs = 5
     steps_per_epoch = 100
 
     step = 0
