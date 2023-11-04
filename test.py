@@ -27,11 +27,11 @@ from fixed import tensor_to_image, load_img, extractor, style_extractor, train_s
 from PIL import Image
 
 app = Flask(__name__)
-CORS(app, resources={r"/perform_nst": {"origins": "https://localhost:3000"}, r"/plant_disease": {"origins": "https://localhost:3000"}})
+CORS(app, resources={r"/perform_nst": {"origins": "http://localhost:3000"}, r"/plant_disease": {"origins": "http://localhost:3000"}})
 
 # 사용자 콘텐츠 업로드 및 NST 수행 엔드포인트
 @app.route('/perform_nst', methods=['POST'])
-@cross_origin(origins='https://localhost:3000', supports_credentials=True)
+@cross_origin(origins='http://localhost:3000', supports_credentials=True)
 def perform_nst():
     # 사용자 콘텐츠 이미지 업로드
     content_image = request.files['content_image']
@@ -95,7 +95,7 @@ def perform_nst():
     return jsonify({"imageData": img_base64})
 
 @app.route('/plant_disease', methods=['POST'])
-@cross_origin(origins='https://localhost:3000', supports_credentials=True)
+@cross_origin(origins='http://localhost:3000', supports_credentials=True)
 def plant_disease():
     # 이미지 파일 불러오기
     img_path = request.json.get('imageUrl')
@@ -127,7 +127,7 @@ def plant_disease():
     return imageinfo
 
 @app.route('/styleTransfer', methods=['POST'])
-@cross_origin(origins='https://localhost:3000', supports_credentials=True)
+@cross_origin(origins='http://localhost:3000', supports_credentials=True)
 def styleTransfer():
     content_image_url = request.json['content_image']
     style_image_url = request.json['style_image']
